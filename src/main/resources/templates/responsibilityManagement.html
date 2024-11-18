@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsibility Management</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+
+<div class="container">
+    <h1 class="mt-5">Responsibility Management</h1>
+
+    <!-- Section 1: Add New Responsibility -->
+    <div class="mt-4">
+        <h3>Add New Responsibility</h3>
+        <form id="addResponsibilityForm">
+            <div class="form-group">
+                <label for="position">Position</label>
+                <input type="text" class="form-control" id="position" name="position" required>
+            </div>
+            <div class="form-group">
+                <label for="subPositions">Sub Positions</label>
+                <input type="text" class="form-control" id="subPositions" name="subPositions">
+            </div>
+            <div class="form-group">
+                <label for="note">Note</label>
+                <textarea class="form-control" id="note" name="note"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="bulletPoints">Responsibilities (newLine-separated):</label>
+                <textarea class="form-control" id="bulletPoints" name="bulletPoints"></textarea>
+            </div>
+            <!--<div class="form-group">
+                <label for="titles">Assign Titles</label>
+                <select multiple class="form-control" id="titles" name="titles[]"></select>
+            </div>-->
+            <button type="submit" class="btn btn-primary">Create Responsibility</button>
+        </form>
+    </div>
+
+    <!-- Section 2: Search Responsibility by Position -->
+    <div>
+        <h3 class="section-title">Search by Position</h3>
+        <form id="searchResponsibilityForm" class="d-flex">
+            <input type="text" class="form-control me-2" id="searchPosition" placeholder="Enter position">
+            <button type="submit" class="btn btn-info">Search</button>
+        </form>
+        <div id="searchResult" class="mt-3"></div>
+    </div>
+
+    <div id="editResponsibilitySection" style="display: none;">
+        <h3>Edit Responsibility</h3>
+        <form id="editResponsibilityForm">
+            <input type="hidden" id="editResponsibilityId">
+            <div class="form-group">
+                <label for="editPosition">Position</label>
+                <input type="text" class="form-control" id="editPosition" name="position" required>
+            </div>
+            <div class="form-group">
+                <label for="editSubPositions">Sub Positions</label>
+                <input type="text" class="form-control" id="editSubPositions" name="subPositions">
+            </div>
+            <div class="form-group">
+                <label for="editNote">Note</label>
+                <textarea class="form-control" id="editNote" name="note"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="editResponsibilities">Responsibilities</label>
+                <textarea class="form-control" id="editResponsibilities" name="responsibilities"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Update Responsibility</button>
+        </form>
+    </div>
+
+    <!-- Section 3: Map Responsibility to Title -->
+    <div class="mt-5" id="mapResponsibilitySection" style="display:none;">
+        <h3>Map Responsibility to Title</h3>
+        <form id="mapResponsibilityForm">
+            <div class="form-group">
+                <label for="responsibilityId">Responsibility</label>
+                <select class="form-control" id="responsibilityId" name="responsibilityId"></select>
+            </div>
+            <div class="form-group">
+                <label for="titleId">Title</label>
+                <select class="form-control" id="titleId" name="titleId"></select>
+            </div>
+            <button type="submit" class="btn btn-success">Map Responsibility to Title</button>
+        </form>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script src="/js/responsibilityManagement.js"></script>  <!-- External JS file -->
+
+</body>
+</html>

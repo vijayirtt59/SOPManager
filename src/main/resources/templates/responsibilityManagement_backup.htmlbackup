@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsibility Management</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .container {
+            margin-top: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        #selectedResponsibilitiesSection {
+            display: none; /* Initially hide the selected responsibilities section */
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Responsibility Management</h1>
+
+    <!-- Responsibility Form -->
+    <form id="responsibilityForm">
+        <div class="form-group">
+            <label for="position">Position:</label>
+            <input type="text" class="form-control" id="position" name="position" required>
+        </div>
+        <div class="form-group">
+            <label for="subPositions">Sub-Positions (comma-separated):</label>
+            <input type="text" class="form-control" id="subPositions" name="subPositions" placeholder="e.g., Sub-position 1, Sub-position 2" required>
+        </div>
+        <div class="form-group">
+            <label for="note">Note:</label>
+            <textarea class="form-control" id="note" name="note" required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="responsibilities">Responsibilities (one per line):</label>
+            <textarea class="form-control" id="responsibilities" name="responsibilities" rows="3" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Save Responsibility</button>
+    </form>
+
+    <hr>
+
+    <!-- Search Responsibility Form -->
+    <h2>Search Responsibility</h2>
+    <form id="searchForm">
+        <div class="form-group">
+            <label for="searchPosition">Search by Position:</label>
+            <input type="text" class="form-control" id="searchPosition" name="searchPosition" required>
+        </div>
+        <button type="submit" class="btn btn-secondary">Search</button>
+    </form>
+
+    <!-- Search Results Table -->
+    <div id="responsibilityResults" style="display: none;">
+        <h2>Responsibility Results</h2>
+        <table class="table table-bordered" id="responsibilityTable">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Position</th>
+                <th>Sub-Positions</th>
+                <th>Note</th>
+                <th>Responsibilities</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- Rows will be added dynamically here -->
+            </tbody>
+        </table>
+    </div>
+
+    <hr>
+
+    <!-- Map Title to Responsibilities Form -->
+    <h2>Map Title to Responsibilities</h2>
+    <form id="mappingForm">
+        <div class="form-group">
+            <label for="titleName">Title Name:</label>
+            <select id="titleName" class="form-control" required>
+                <!-- Options will be populated dynamically -->
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="responsibilityId">Position:</label>
+            <select id="responsibilityId" class="form-control" required>
+                <!-- Options will be populated dynamically -->
+            </select>
+        </div>
+        <button type="button" id="addResponsibility" class="btn btn-primary">Add Responsibility</button>
+
+        <div id="selectedResponsibilitiesSection">
+            <h3>Selected Responsibilities</h3>
+            <table class="table table-bordered" id="selectedResponsibilitiesTable">
+                <thead>
+                <tr>
+                    <th>Title Name</th>
+                    <th>Responsibility</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <!-- Mappings will be added here -->
+                </tbody>
+            </table>
+            <button type="submit" class="btn btn-success">Save Mappings</button>
+        </div>
+    </form>
+
+    <hr>
+
+    <!-- View Mappings for a Title -->
+    <h2>View Mappings for a Title</h2>
+    <form id="viewMappingsForm">
+        <div class="form-group">
+            <label for="mappingTitleName">Title Name:</label>
+            <select id="mappingTitleName" class="form-control" required>
+                <!-- Options will be populated dynamically -->
+            </select>
+        </div>
+        <button type="submit" class="btn btn-secondary">View Mappings</button>
+    </form>
+
+    <!-- Mappings Table -->
+    <div id="mappingsResults" style="display: none;">
+        <h2>Title Mappings</h2>
+        <table class="table table-bordered" id="mappingTable">
+            <thead>
+            <tr>
+                <th>Title Name</th>
+                <th>Responsibility</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- Rows will be added dynamically here -->
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+    $(document).ready(function() {
+        // Fetch and populate title names
+        function populateTitles() {
+            fetch('/api/titles')
+                .then(response => response.json())
+                .then(titles => {
+                    const titleSelects = $('#titleName, #mappingTitleName');
+                    titleSelects.empty();
+                    titles.forEach(title => {
+                        titleSelects.append(new Option(title.name, title.id));
+                    });
+                });
+        }
+
+        // Fetch and populate responsibilities
+        function populateResponsibilities() {
+            fetch('/api/responsibilities')
+                .then(response => response.json())
+                .then(responsibilities => {
+                    $('#responsibilityId').empty();
+                    responsibilities.forEach(resp => {
+                        $('#responsibilityId').append(new Option(resp.position, resp.id));
+                    });
+                });
+        }
+
+        populateTitles();
+        populateResponsibilities();
+
+        // Submit Responsibility Form
+        $('#responsibilityForm').submit(function(event) {
+            event.preventDefault();
+            const formData = {
+                position: $('#position').val(),
+                subPositions: $('#subPositions').val(),
+                note: $('#note').val(),
+                responsibilities: $('#responsibilities').val().split('\n').join(', ')
+            };
+
+            $.ajax({
+                type: 'POST',
+                url: '/api/responsibilities',
+                data: JSON.stringify(formData),
+                contentType: 'application/json',
+                success: function() {
+                    alert('Responsibility saved successfully!');
+                    $('#responsibilityForm')[0].reset();
+                },
+                error: function() {
+                    alert('Error saving responsibility.');
+                }
+            });
+        });
+
+        // Add Responsibility to Mapping Table
+        $('#addResponsibility').click(function() {
+            const titleId = $('#titleName').val();
+            console.log(titleId);
+            const responsibilityId = $('#responsibilityId').val();
+            console.log(responsibilityId);
+            const position = $('#position').val();
+            console.log(position);
+
+            if (titleId && responsibilityId) {
+                const row = `
+                    <tr>
+                        <td>${$('#titleName option:selected').text()}</td>
+                        <td>${$('#responsibilityId option:selected').text()}</td>
+                        <input type="hidden" class="title-id" value="${titleId}">
+                        <input type="hidden" class="responsibility-id" value="${responsibilityId}">
+                        <input type="hidden" class="position-title" value="${position}">
+                        <td><button type="button" class="btn btn-danger removeMapping">Remove</button></td>
+                    </tr>
+                `;
+                $('#selectedResponsibilitiesTable tbody').append(row);
+                $('#selectedResponsibilitiesSection').show();
+            } else {
+                alert('Please select both title and responsibility.');
+            }
+        });
+
+        // Remove Mapping from Table
+        $(document).on('click', '.removeMapping', function() {
+            $(this).closest('tr').remove();
+            if ($('#selectedResponsibilitiesTable tbody tr').length === 0) {
+                $('#selectedResponsibilitiesSection').hide();
+            }
+        });
+
+        // Save Mappings
+        $('#mappingForm').submit(function(event) {
+        event.preventDefault();
+
+        // Create a single TitleResponsibility object based on the selected title and responsibility
+        const titleId = $('#titleName').val();
+        const responsibilityId = $('#responsibilityId').val();
+        const position = $('#position').val();
+
+        if (titleId && responsibilityId) {
+            const mapping = {
+                title: { id: titleId, position: position },  // Set the title object with ID
+                responsibility: { id: responsibilityId } // Set the responsibility object with ID
+            };
+
+            // Send the single mapping object in the request
+            $.ajax({
+                type: 'POST',
+                url: '/api/mappings',
+                data: JSON.stringify(mapping),
+                contentType: 'application/json',
+                success: function(response) {
+                    alert('Mapping saved successfully!');
+                    $('#selectedResponsibilitiesTable tbody').empty();
+                    $('#selectedResponsibilitiesSection').hide();
+                },
+                error: function() {
+                    alert('Error saving mapping.');
+                }
+             });
+            } else {
+            alert('Please select both title and responsibility.');
+            }
+         });
+    });
+</script>
+</body>
+</html>

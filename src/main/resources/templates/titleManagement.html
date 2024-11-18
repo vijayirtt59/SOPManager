@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Title Management</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/titleManagement.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="/js/titleManagement.js"></script>
+</head>
+<body>
+<div class="container mt-5">
+    <h1>Title Management</h1>
+
+    <form id="titleForm" class="mb-4">
+        <input type="hidden" id="titleId" name="id">
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="procedureNumber">Procedure Number:</label>
+            <input type="text" id="procedureNumber" name="procedureNumber" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="applicationDate">Application Date:</label>
+            <input type="date" id="applicationDate" name="applicationDate" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="substitute">Substitute:</label>
+            <input type="number" id="substitute" name="substitute" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="revisionNo">Revision No:</label>
+            <input type="text" id="revisionNo" name="revisionNo" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="nextRevision">Next Revision:</label>
+            <input type="date" id="nextRevision" name="nextRevision" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Save Title</button>
+    </form>
+
+    <h2>Search Titles</h2>
+    <form id="searchForm">
+        <div class="form-group">
+            <input type="text" id="searchName" name="name" class="form-control" placeholder="Search by name">
+        </div>
+        <button type="submit" class="btn btn-secondary">Search</button>
+    </form>
+
+    <div id="searchResults" class="mt-4" style="display: none;">
+        <h2>Search Results</h2>
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Procedure Number</th>
+                <th>Application Date</th>
+                <th>Substitute</th>
+                <th>Revision No</th>
+                <th>Next Revision</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody id="resultsTableBody">
+            <!-- Results will be appended here by JS -->
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,56 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    color: #333;
+}
+
+.welcome-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.welcome-message, .login-options {
+    width: 45%;
+}
+
+.login-options a {
+    display: block;
+    margin: 10px 0;
+    text-decoration: none;
+    color: blue;
+}
+
+.login-container, .login-container form {
+    width: 300px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table, th, td {
+    border: 1px solid #ccc;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+button {
+    margin-right: 5px;
+}

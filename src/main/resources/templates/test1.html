@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f4f7f6;
+            padding-top: 30px;
+        }
+
+        .container {
+            max-width: 900px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #007bff;
+            margin-bottom: 30px;
+        }
+
+        .list-group-item {
+            font-size: 1.1rem;
+            padding: 15px;
+            border-radius: 0.25rem;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .list-group-item:hover {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .list-group-item:last-child {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .list-group-item:last-child:hover {
+            background-color: #c82333;
+        }
+
+        .list-group-item-action {
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            width: 100%;
+            padding: 12px;
+        }
+    </style>
+</head>
+<body>
+<div class="container mt-5">
+    <h1>Admin Dashboard</h1>
+    <div class="list-group">
+        <a href="/titleManagement" class="list-group-item list-group-item-action">Manage Titles</a>
+        <a href="/objectiveManagement" class="list-group-item list-group-item-action">Manage Objectives</a>
+        <a href="/scopeManagement" class="list-group-item list-group-item-action">Manage Scopes</a>
+        <a href="/responsibilityManagement" class="list-group-item list-group-item-action">Manage Responsibilities</a>
+        <a href="/definitionManagement" class="list-group-item list-group-item-action">Manage Definitions</a>
+        <a href="/developmentManagement" class="list-group-item list-group-item-action">Manage Developments</a>
+        <a href="/logout" class="list-group-item list-group-item-action">Logout</a>
+    </div>
+</div>
+
+<!-- Bootstrap JS & jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

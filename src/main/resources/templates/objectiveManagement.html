@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Objectives Management</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/objectiveManagement.css}">
+</head>
+<body>
+<div class="container">
+    <h1>Objective Management</h1>
+
+    <!-- Search Form -->
+    <form id="searchForm" class="form-inline my-2 my-lg-0">
+        <input id="searchName" class="form-control mr-sm-2" type="search" placeholder="Search by Title Name" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+
+    <!-- Objective Form -->
+    <form id="objectiveForm" action="/api/objectives" method="post">
+        <div class="form-group">
+            <label for="titleName">Title Name:</label>
+            <input type="text" class="form-control" id="titleName" name="titleName" required>
+        </div>
+        <div class="form-group">
+            <label for="paragraph">Paragraph:</label>
+            <textarea class="form-control" id="paragraph" name="paragraph" required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="bulletPoints">Bullet Points (newLine-separated):</label>
+            <textarea class="form-control" id="bulletPoints" name="bulletPoints" rows="3" placeholder="Enter each bullet point on a new line" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Save Objective</button>
+    </form>
+
+    <!-- Objectives Table -->
+    <div id="objectivesSection" style="display: none;">
+        <h2>Objectives List</h2>
+        <table class="table" id="objectivesTable">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Title Name</th>
+                <th>Paragraph</th>
+                <th>Bullet Points</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- Rows will be added dynamically here -->
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/js/objectiveManagement.js"></script>
+</body>
+</html>

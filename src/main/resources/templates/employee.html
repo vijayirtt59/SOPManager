@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Dashboard</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        body {
+            background-color: #f4f7f6;
+            padding-top: 20px;
+        }
+
+        .logout-link {
+            float: right;
+        }
+
+        .card-header {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            color: #007bff;
+        }
+
+        .list-item-link {
+            color: #007bff;
+            text-decoration: none;
+            font-size: 1.1rem;
+        }
+
+        .list-item-link:hover {
+            text-decoration: underline;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+<!-- Navigation Bar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Employee Dashboard</a>
+    <div class="logout-link">
+        <a href="/logout" class="btn btn-danger btn-sm">Logout</a>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Title List</h2>
+                </div>
+                <div class="card-body">
+                    <ul id="titleList" class="list-group">
+                        <!-- Titles will be populated here -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS & jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            fetchTitles();
+        });
+
+        function fetchTitles() {
+            fetch('/api/titles')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(titles => {
+                    console.log('Fetched Titles:', titles);
+                    displayTitles(titles);
+                })
+                .catch(error => {
+                    console.error('There was a problem with the fetch operation:', error);
+                });
+        }
+
+        function displayTitles(titles) {
+            const titleList = document.getElementById('titleList');
+            titleList.innerHTML = '';
+            titles.forEach(title => {
+                const listItem = document.createElement('li');
+                listItem.classList.add('list-group-item');
+                const link = document.createElement('a');
+                link.href = `/employeeDetails?id=${title.id}`;
+                link.textContent = title.name;
+                link.classList.add('list-item-link');
+                listItem.appendChild(link);
+                titleList.appendChild(listItem);
+            });
+        }
+    </script>
+</body>
+</html>

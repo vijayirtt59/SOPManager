@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f4f7f6;
+            display: flex;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #343a40;
+            color: #fff;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            padding-top: 30px;
+            padding-left: 10px;
+        }
+
+        .sidebar h2 {
+            color: #007bff;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .sidebar .list-group {
+            margin-top: 20px;
+        }
+
+        .sidebar .list-group-item {
+            background-color: #343a40;
+            color: #fff;
+            border: none;
+            font-size: 1.2rem;
+            padding: 15px;
+            text-align: center;
+            border-radius: 0;
+        }
+
+        .sidebar .list-group-item:hover {
+            background-color: #007bff;
+            cursor: pointer;
+            color: white;
+        }
+
+        .sidebar .list-group-item:last-child {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .sidebar .list-group-item:last-child:hover {
+            background-color: #c82333;
+        }
+
+        .main-content {
+            margin-left: 250px;
+            padding: 30px;
+            width: 100%;
+            background-color: #f4f7f6;
+        }
+
+        .main-content h1 {
+            color: #007bff;
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+
+        .main-content h2 {
+            color: #343a40;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .topbar {
+            background-color: #007bff;
+            color: white;
+            padding: 15px;
+            text-align: right;
+            position: fixed;
+            width: calc(100% - 250px);
+            top: 0;
+            right: 0;
+            height: 60px;
+            z-index: 1000;
+        }
+
+        .topbar a {
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            font-size: 1.2rem;
+        }
+
+        .topbar a:hover {
+            background-color: #0056b3;
+            border-radius: 5px;
+        }
+
+        .card {
+            margin-top: 20px;
+            background-color: white;
+            border: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-header {
+            background-color: #f8f9fa;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .btn-primary {
+            width: 100%;
+            padding: 12px;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+<!-- Sidebar Navigation -->
+<div class="sidebar">
+    <h2>Admin Dashboard</h2>
+    <div class="list-group">
+        <a href="/titleManagement" class="list-group-item">Manage Titles</a>
+        <a href="/objectiveManagement" class="list-group-item">Manage Objectives</a>
+        <a href="/scopeManagement" class="list-group-item">Manage Scopes</a>
+        <a href="/responsibilityManagement" class="list-group-item">Manage Responsibilities</a>
+        <a href="/definitionManagement" class="list-group-item">Manage Definitions</a>
+        <a href="/developmentManagement" class="list-group-item">Manage Developments</a>
+        <a href="/logout" class="list-group-item">Logout</a>
+    </div>
+</div>
+
+<!-- Main Content Area -->
+<div class="main-content">
+    <!-- Topbar -->
+    <div class="topbar">
+        <a href="/logout">Logout</a>
+    </div>
+
+    <h1>Welcome to the Admin Dashboard</h1>
+
+    <!-- Admin Dashboard Cards -->
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">
+                    Title Management
+                </div>
+                <div class="card-body">
+                    <a href="/titleManagement" class="btn btn-primary">Go to Title Management</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">
+                    Objective Management
+                </div>
+                <div class="card-body">
+                    <a href="/objectiveManagement" class="btn btn-primary">Go to Objective Management</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">
+                    Scope Management
+                </div>
+                <div class="card-body">
+                    <a href="/scopeManagement" class="btn btn-primary">Go to Scope Management</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Other Content -->
+    <div class="row">
+        <!-- You can add more content here as needed -->
+    </div>
+</div>
+
+<!-- Bootstrap JS & jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title and Objective Details</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!--<style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            margin-top: 30px;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            margin-top: 20px;
+        }
+
+        .note {
+            font-style: italic;
+            margin-top: 10px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        ul li {
+            margin-bottom: 10px;
+        }
+
+        .responsibility-list ul {
+            padding-left: 20px;
+        }
+
+        .responsibility-list li {
+            margin-bottom: 15px;
+        }
+    </style>-->
+</head>
+<body>
+
+<div class="container">
+    <!-- Table of Contents -->
+    <div class="toc-section">
+        <h3>Tabla de Contenidos</h3>
+        <ol>
+            <li><a href="#objectiveSection">OBJETIVO</a></li>
+            <li><a href="#scopeSection">ALCANCE</a></li>
+            <li><a href="#responsibilitySection">RESPONSABILIDAD</a></li>
+            <li><a href="#definitionSection">DEFINICIONES</a></li>
+        </ol>
+    </div>
+
+    <!-- Title Section -->
+    <div id="titleSection">
+        <h1 class="text-center">PROCEDIMIENTO NORMALIZADO DE OPERACIÓN</h1>
+        <table class="table table-bordered">
+            <tr>
+                <td colspan="3"><strong>TITULO:</strong> <span id="titleName"></span></td>
+            </tr>
+            <tr>
+                <td>
+                    <p><strong>Procedimiento No.:</strong> <span id="procedureNumber"></span></p>
+                </td>
+                <td>
+                    <p><strong>F. de Aplicación:</strong> <span id="applicationDate"></span></p>
+                    <p><strong>Sustituye a:</strong> <span id="substitute"></span></p>
+                </td>
+                <td>
+                    <p><strong>Revisión No.:</strong> <span id="revisionNo"></span></p>
+                    <p><strong>Próxima Revisión:</strong> <span id="nextRevision"></span></p>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- Objective Section -->
+    <div id="objectiveSection">
+        <h2 class="section-title">1. OBJETIVO</h2>
+        <p><span id="objectiveTitleName"></span></p>
+        <p><span id="paragraph"></span></p>
+        <ol id="bulletPoints"></ol>
+    </div>
+
+    <!-- Scope Section -->
+    <div id="scopeSection">
+        <h2 class="section-title">2. ALCANCE</h2>
+        <p><span id="scopeParagraph"></span></p>
+    </div>
+
+    <!-- Responsibility Section -->
+    <div id="responsibilitySection" class="responsibility-list">
+        <h2 class="section-title">3. RESPONSABILIDAD</h2>
+        <ol id="responsibilityList"></ol>
+    </div>
+
+    <div id="definitionSection" class="definition-list">
+        <h2 class="section-title">4. DEFINICIONES</h2>
+        <ol id="definitionList"></ol>
+    </div>
+
+    <div id="developmentSection" class="development-list">
+        <h2 class="section-title">5. DESARROLLOS</h2>
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th scope="col">Número</th>
+                <th scope="col">Responsable</th>
+                <th scope="col">Actividad</th>
+                <th scope="col">Descripción</th>
+            </tr>
+            </thead>
+            <tbody id="developmentTableBody">
+            <!-- Development rows will be inserted here -->
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="/js/employeeDetails.js"></script>
+
+</body>
+</html>

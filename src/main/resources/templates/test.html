@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title Management</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/titleManagement.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="/js/titleManagement.js"></script>
+    <style>
+        body {
+            background-color: #f4f7f6;
+            padding-top: 30px;
+        }
+
+        .container {
+            max-width: 900px;
+        }
+
+        h1, h2 {
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+        }
+
+        .form-group label {
+            font-weight: bold;
+        }
+
+        .form-control {
+            border-radius: 0.25rem;
+        }
+
+        .btn-primary, .btn-secondary {
+            width: 100%;
+            padding: 12px;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #004085;
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+            border-color: #6c757d;
+        }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+            border-color: #4e555b;
+        }
+
+        .table th, .table td {
+            vertical-align: middle;
+            text-align: center;
+        }
+
+        .table th {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .table td {
+            background-color: #ffffff;
+        }
+
+        .mt-4 {
+            margin-top: 1.5rem;
+        }
+
+        .search-section, .results-section {
+            margin-bottom: 30px;
+        }
+
+        .search-form-group {
+            display: flex;
+            align-items: center;
+        }
+
+        .search-form-group input {
+            flex-grow: 1;
+            margin-right: 10px;
+        }
+
+        .results-section {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div class="container mt-5">
+    <h1>Title Management</h1>
+
+    <!-- Title Form -->
+    <div class="card mb-4">
+        <div class="card-header">
+            <h2>Create or Edit Title</h2>
+        </div>
+        <div class="card-body">
+            <form id="titleForm">
+                <input type="hidden" id="titleId" name="id">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="procedureNumber">Procedure Number:</label>
+                    <input type="text" id="procedureNumber" name="procedureNumber" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="applicationDate">Application Date:</label>
+                    <input type="date" id="applicationDate" name="applicationDate" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="substitute">Substitute:</label>
+                    <input type="number" id="substitute" name="substitute" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="revisionNo">Revision No:</label>
+                    <input type="text" id="revisionNo" name="revisionNo" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="nextRevision">Next Revision:</label>
+                    <input type="date" id="nextRevision" name="nextRevision" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Save Title</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Search Form -->
+    <div class="search-section">
+        <h2>Search Titles</h2>
+        <form id="searchForm" class="form-inline">
+            <div class="form-group search-form-group">
+                <input type="text" id="searchName" name="name" class="form-control" placeholder="Search by name">
+                <button type="submit" class="btn btn-secondary">Search</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Search Results Section -->
+    <div id="searchResults" class="results-section">
+        <h2>Search Results</h2>
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Procedure Number</th>
+                <th>Application Date</th>
+                <th>Substitute</th>
+                <th>Revision No</th>
+                <th>Next Revision</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody id="resultsTableBody">
+            <!-- Results will be appended here by JS -->
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
